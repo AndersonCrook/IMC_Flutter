@@ -7,13 +7,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:imc/main.dart';
+import 'package:imc/android/app.dart';
+import 'package:imc/ios/app.dart';
+import 'dart:io' show Platform;
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await Platform.isIOS ? tester.pumpWidget(IMCiOSApp()) : tester.pumpWidget(IMCAndroidApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
